@@ -7,7 +7,8 @@ fn main() {
 
   let secret_number = rand::thread_rng().gen_range(1..=100);
   println!("The secret number is: {secret_number}");
-  let mut tries = 3;
+  let max_tries = 5;
+  let mut tries = max_tries;
   let fail_case = 0;
   loop {
     match fail_case.cmp(&tries) {
@@ -19,7 +20,7 @@ fn main() {
         println!("tries: {tries}")
       },
       Ordering::Equal => {
-        println!("You have run out of chances. Sorry, you lose!");
+        println!("You have run out of chances. Sorry, you lose! The Number was {secret_number}");
         break;
       }
     } 
@@ -30,7 +31,7 @@ fn main() {
     
     let guess: u32 = match guess.trim().parse() {
       Ok(num) => num,
-      Err(err) => continue,
+      Err(_err) => continue,
     };
       
     println!("You guessed: {guess}");
@@ -39,7 +40,12 @@ fn main() {
       Ordering::Less => println!("Too small!"),
       Ordering::Greater => println!("Too big!"),
       Ordering::Equal => {
-        println!("You win!");
+        let mut guess_string = "guess";
+        let try_total = max_tries - tries;
+        if try_total > 1 {
+          guess_string = "guesses";
+        }
+        println!("You win! It took you {} {}!", try_total, guess_string);
         break;
       }
     }
