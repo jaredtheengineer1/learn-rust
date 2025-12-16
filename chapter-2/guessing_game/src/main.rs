@@ -30,10 +30,7 @@ fn main() {
     
     let guess: u32 = match guess.trim().parse() {
       Ok(num) => num,
-      Err(err) => {
-        println!("what was the error: {err}");
-        continue;
-      }
+      Err(err) => continue,
     };
       
     println!("You guessed: {guess}");
