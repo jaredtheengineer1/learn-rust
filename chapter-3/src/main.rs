@@ -2,6 +2,7 @@ fn main() {
     // immuatable();
     mutable();
     shadowed();
+    type_mutation()
 }
 
 // fn immuatable() {
@@ -29,4 +30,10 @@ fn shadowed() {
   }
 
   println!("After the inner most scope has ended, the shadowed value of x is: {x}");
+}
+
+fn type_mutation() {
+  let spaces = "     ";
+  // spaces = spaces.len(); // bad - changes type of variable as well as assigning new value to immutable variable
+  let spaces = spaces.len() + 0; // good - shadows the variable and changes type to number instead of string
 }
