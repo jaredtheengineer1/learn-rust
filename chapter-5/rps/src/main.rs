@@ -19,7 +19,7 @@ fn main() {
     _ => (),
   }
 
-  println!("Player, please choose 'Rock', 'Paper', or 'Scissors'");
+  println!("Player, please choose 'Rock', 'Paper', or 'Scissors':");
   io::stdin().read_line(&mut player_1_choice).expect("failed to read line");
   let player_1_choice: Choices = match player_1_choice.trim().to_lowercase().as_str() {
     "rock" => Choices::Rock,
